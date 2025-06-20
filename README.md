@@ -41,3 +41,24 @@ Aquí tocaremos temas sobre:
 - Separar la lógica en diferentes archivos
 - Realizar respaldos en GitHub
 - Procedimiento para escuchar cuando un cliente se conecta y se desconecta
+
+Ejemplo de creación de tag: `git tag -a v1.0.0 -m "Socket Server Básico"`.
+
+Ejemplo de puhs del tag: `git push --tags`.
+
+## BandNames Flutter + Socket Backend
+
+Vamos a conectar nuestra aplicación de Flutter con nuestro backend, y ambos van a trabajar como si fueran uno solo.
+
+La idea es que mi aplicación de Flutter le mande un mensaje al servidor, y este lo distribuya a todos los clientes conectados. Si un cliente se conecta recibirá la información actualizada a como esté en ese instante.
+
+#### Temas puntuales de la sección
+
+En esta sección tocaremos los siguientes temas:
+
+- Conectarnos a nuestro socket server
+- Escuchar y emitir eventos desde y hacia Flutter
+- Indicadores visuales del estado de la conexión
+- Re-conexión al socket server
+- CRUD basado en Sockets
+- Gráficas en tiempo real

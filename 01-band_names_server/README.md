@@ -82,6 +82,22 @@ Vamos a mover la lógica de los mensajes por socket de `index.js`, donde no tien
 
 En la raiz del proyecto creamos un directorio `sockets` y dentro creamos el archivo `socket.js`.
 
+## Lógica para el manejo de las votaciones
+
+Vamos a añadir la lógica para manejar las votaciones.
+
+Nos creamos un nuevo directorio `models` y dentro creamos dos clases, una que manejará cada una de las instancias que vamos a tener y otra para manejar la colección de cada uno de los BandNames que vamos a tener y la lógica. Las clases son `band.js`y `bands.js`.
+
+Instalamos, para el id, el paquete `uuid`: `npm i uuid`.
+
+Cuando un cliente se conecte, obtendrá el listado completo de las bandas.
+
+## Socket: Emitir bandas registradas
+
+Modificamos `socket.js` para crear una nueva instancia de la clase `Bands` y, cuando un cliente se conecte, emitiremos las bandas con la información actualizada.
+
+Modificamos `index.html` para realizar la prueba de escuchar esa emisión. No olvidar, al hacer la prueba, refrescar el navegador.
+
 ## Ejecución del proyecto
 
 Clonar desde GitHub y sustituir el archivo `.env.template` por `.env`.
@@ -93,3 +109,27 @@ Abrir un navegador y acceder a la ruta: `http:localhost:3000`. Hay que refrescar
 Abrir otro navegador y acceder a la misma ruta. Recargar solo en uno de los navegadores para ver como se realiza la emisión-escucha de los mensajes.
 
 **NOTA:** Abrir las DevTools del navegador, porque lo importante va a ocurrir ahí. También visualizar el terminal para ver los mensajes en el server.
+
+## Socket: Votar por una Banda
+
+Cuando toquemos una banda en pantalla, se incrementa en uno la votación a esa banda, el servidor lo recibe y emite un mensaje a todos los clientes conectados, en este caso nuestra conexión web (en la Consola)
+
+Modificamos `socket.js` para escuchar el evento `vote-band`.
+
+Recuperamos el id y realizamos la votación.
+
+Desde la consola del navegador tambíen podemos votar de esta forma: `socket.emit('vote-band', {id: <un_id>});` y veremos que la app de Flutter se refresca con los nuevos valores.
+
+## Socket: Agregar una nueva Banda
+
+Vamos a agregar una nueva banda en Flutter y llamar al servidor de sockets para que lo agregue en BD y comunique a todos los clientes la nueva banda.
+
+Modificamos `socket.js` para escuchar el evento `add-band` y emitirá `active-bands` a todos los clientes conectados.
+
+## Socket: Borrar Banda
+
+Vamos a eliminar una banda cuando movamos el nombre de la banda a la derecha.
+
+Al eliminar desde Flutter, mandaremos el id al backend para que elimine la banda. A su vez, notificará a todos los clientes que se eliminó dicha banda.
+
+Modificamos `socket.js` para escuchar el evento `delete-band` y emitirá `active-bands` a todos los clientes conectados.
