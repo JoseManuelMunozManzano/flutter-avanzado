@@ -133,3 +133,15 @@ Vamos a eliminar una banda cuando movamos el nombre de la banda a la derecha.
 Al eliminar desde Flutter, mandaremos el id al backend para que elimine la banda. A su vez, notificará a todos los clientes que se eliminó dicha banda.
 
 Modificamos `socket.js` para escuchar el evento `delete-band` y emitirá `active-bands` a todos los clientes conectados.
+
+## Desplegar en Raspberry Pi
+
+Voy a desplegar este proyecto en mi Raspberry Pi.
+
+Para ello creo los archivos `Dockerfile` y `docker-compose.yml`.
+
+Tengo el contexto de docker apuntado a mi Raspberry Pi: `docker context use docker-pi`.
+
+Ahora ejecuto el comando `docker compose up -d`.
+
+He tenido que cambiar, en el proyecto Flutter, en `socket_service.dart` la ruta del server a la de mi Raspberry Pi.

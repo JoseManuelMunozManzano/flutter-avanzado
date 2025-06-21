@@ -21,11 +21,17 @@ class SocketService with ChangeNotifier {
   void _initConfig() {
     // Importante indicar nuestra IP o http://10.0.2.2:3000 para emuladores de Android.
     // Para iOS se puede usar http://localhost:3000.
-    // Cuando se lleve a producción habrá que cambiar esta IP por el dominio del servidor.
-    _socket = IO.io('http://192.168.50.124:3000/', {
+    // Cuando se lleve a producción habrá que cambiar esta IP por el dominio del servidor, en mi caso la Raspberry Pi.
+    //
+    // _socket = IO.io('http://192.168.50.124:3000/', {
+    //   'transports': ['websocket'],
+    //   'autoConnect': true,
+    // });
+
+    _socket = IO.io('http://192.168.50.2:3002/', {
       'transports': ['websocket'],
       'autoConnect': true,
-    });
+    });    
 
     _socket.onConnect((_) {
       // print('connect');

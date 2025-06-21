@@ -119,3 +119,9 @@ Vamos a colocar una gráfica que se actualizará en tiempo real en base a las vo
 Instalaremos el paquete de gráficas `pie_chart`. Documentación `https://pub.dev/packages/pie_char`.
 
 Vamos a añadir la gráfica en `home_page.dart`.
+
+## Desplegar en Raspberry Pi
+
+He desplegado el server en mi Raspberry Pi.
+
+He tenido que cambiar, en el proyecto Flutter, en `socket_service.dart` la ruta del server a la de mi Raspberry Pi.

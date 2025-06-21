@@ -62,3 +62,7 @@ En esta sección tocaremos los siguientes temas:
 - Re-conexión al socket server
 - CRUD basado en Sockets
 - Gráficas en tiempo real
+
+## Desplegar Socket Server en mi Raspberry Pi
+
+Aquí hay una cosa muy importante que decir, cuando subamos la app Flutter a las Apps Stores, si se usa un server, este tiene que tener un certificado HTTPS.
