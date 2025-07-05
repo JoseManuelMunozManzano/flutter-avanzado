@@ -66,3 +66,25 @@ En esta sección tocaremos los siguientes temas:
 ## Desplegar Socket Server en mi Raspberry Pi
 
 Aquí hay una cosa muy importante que decir, cuando subamos la app Flutter a las Apps Stores, si se usa un server, este tiene que tener un certificado HTTPS.
+
+
+## 02-chat
+
+### RealTime Chat Socket.io - Mongo - Express - JWT - Login y Registro
+
+Aplicación de chat en tiempo real con autenticación por JSON Web Token, grabación en MongoDB, comunicación entre dispositivos en tiempo real, manejar la creación de cuentas...
+
+#### Temas puntuales de la sección
+
+Aquí tocaremos temas sobre:
+
+- Diseño de la pantalla de Login y Registro
+- CustomInputFields
+- Scrollviews
+- Navegaciones entre pantallas
+
+Esta no es una sección complicada, es puro diseño e ir preparando el terreno para el objetivo final que es crear una aplicación completa de mensajería.
+
+#### Diseño del LoginPage
+
+![alt Diseño del LoginPage](./images/01-Chat-LoginPage.png)
