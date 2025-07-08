@@ -88,3 +88,20 @@ Esta no es una sección complicada, es puro diseño e ir preparando el terreno p
 #### Diseño del LoginPage
 
 ![alt Diseño del LoginPage](./images/01-Chat-LoginPage.png)
+
+### Usuarios y Mensajes
+
+Continuación de la sección anterior.
+
+Aquí vamos a trabajar en la pantalla de usuarios. Lo más importante es saber el estado del socket server, saber qué usuarios están conectados, hacer un pull to refresh y pasar a la pantalla de mensajería (chat) uno a uno, cuyo diseño será parecido al de Messenger.
+
+#### Temas puntuales de la sección
+
+Aquí tocaremos temas sobre:
+
+- Pull to refresh
+- Diseño de la pantalla de chat
+- Mensajes con animaciones
+- Listview invertida
+
+La idea es hacer un diseño similar a iMessage o el Messenger de Facebook, para que se mire atractivo y que ustedes puedan seguir expandiendo su funcionalidad.

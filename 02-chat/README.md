@@ -57,3 +57,29 @@ Añadimos este Widget para que la pantalla sea scrollable y no se corte el conte
 Creamos la pantalla de registro en `register_page.dart` y la conectamos con la pantalla de login.
 
 Desde la pantalla de login, al tocar el botón `Crea una ahora!`, vamos a navegar a la pantalla de registro.
+
+## Página de Usuarios
+
+Vamos a enfocarnos en `usuarios_page.dart`.
+
+También creamos una carpeta `models` dentro de `lib` para definir el modelo de usuario. Creamos el archivo `usuario.dart` con la clase `Usuario`.
+
+## Pull to Refresh
+
+No queremos que los usuarios se estén mostrando por sockets. Vamos a hacer un llamado a un endpoint que nos devuelva los usuarios registrados, y así consumir menos recursos.
+
+A su vez, ese pull to refresh nos va a actualizar o traer el estado activo.
+
+Lo que sí vamos a hacer por sockets es el chat. El objetivo es ver las distintas formas de hacer las cosas.
+
+Para hacer más fácil integrar el pull to refresh, vamos a instalar el paquete `pull_to_refresh`: `https://pub.dev/packages/pull_to_refresh`
+
+## ChatPage
+
+Vamos a crear la pantalla de chat en `chat_page.dart`.
+
+## Mensajes de burbujas
+
+Nos creamos en la carpeta `widgets` un widget llamado `chat_message.dart` que nos va a permitir mostrar los mensajes de forma más bonita.
+
+Seguimos también modificando `chat_page.dart` para que use este widget.
