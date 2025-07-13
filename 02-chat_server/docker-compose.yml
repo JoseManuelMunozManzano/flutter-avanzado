@@ -1,0 +1,7 @@
+services:
+  websocket-server:
+    build: .
+    container_name: band-names-server
+    ports:
+      - "3002:3000"  # Puerto 3002 en la Raspberry → 3000 en el contenedor
+    restart: unless-stopped

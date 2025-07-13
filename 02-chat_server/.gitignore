@@ -1,0 +1,39 @@
+node_modules/
+dist/
+# Logs
+logs
+npm-debug.log*
+# Dependency directories
+jspm_packages/
+# Optional npm cache directory
+.npm
+# Optional eslint cache
+.eslintcache
+# Optional REPL history
+.repl
+# Optional VS Code settings
+.vscode/
+# Optional IntelliJ IDEA files
+.idea/
+# Optional build output
+build/
+# Optional coverage directory
+coverage/
+# Optional Docker files
+docker-compose.override.yml
+# Optional environment files
+.env
+# Optional Yarn files
+.yarn/
+# Optional pnpm files
+.pnpm-debug.log
+# Optional cache directories
+.cache/
+# Optional lock files
+package-lock.json
+# Optional temporary files
+tmp/
+# Optional test output
+test-output/
+# Optional documentation files
+docs/

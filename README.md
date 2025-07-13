@@ -105,3 +105,35 @@ Aquí tocaremos temas sobre:
 - Listview invertida
 
 La idea es hacer un diseño similar a iMessage o el Messenger de Facebook, para que se mire atractivo y que ustedes puedan seguir expandiendo su funcionalidad.
+
+
+## 02-chat_server
+
+En esta sección nos centramos en el backend, en el manejo de las sesiones de los usuarios, en JWT y gestión de contraseñas, en generar y guardar usuarios, validaciones para no tener dos usuarios duplicados...
+
+Usaremos MongoDB para guardar los mensajes y los usuarios.
+
+Podremos trabajar con servicios REST y con sockets.
+
+Preguntas frecuentes:
+
+- Si tenemos un usuario que no está conectado, pero yo le escribo, ¿cómo lo guardo en BD?
+- ¿Cómo autenticar un socket?
+
+#### Temas puntuales de la sección
+
+Aquí tocaremos temas sobre:
+
+- Backend para nuestra aplicación de mensajería
+- MongoDB y MongoAtlas
+- Conectar Node con Mongo
+- Validaciones en Express
+- Crear usuarios de base de datos
+- Encriptar contraseñas
+- Servicios REST
+- Login
+- Registro
+- Json Web Tokens
+- Validar JWTs
+
+Es una sección orientada al login y registro principalmente, luego trabajaremos con los mensajes y su almacenamiento.

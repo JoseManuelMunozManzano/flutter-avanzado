@@ -16,7 +16,7 @@ class _ChatPageState extends State<ChatPage> with TickerProviderStateMixin {
   final _textController = TextEditingController();
   final _focusNode = FocusNode();
 
-  List<ChatMessage> _messages = [];
+  final List<ChatMessage> _messages = [];
 
   bool _estaEscribiendo = false;
 
@@ -76,7 +76,7 @@ class _ChatPageState extends State<ChatPage> with TickerProviderStateMixin {
                 onSubmitted: _handleSubmit,
                 onChanged: (String texto) {
                   setState(() {
-                    if (texto.trim().length > 0) {
+                    if (texto.trim().isNotEmpty) {
                       _estaEscribiendo = true;
                     } else {
                       _estaEscribiendo = false;
@@ -96,12 +96,12 @@ class _ChatPageState extends State<ChatPage> with TickerProviderStateMixin {
               child:
                   Platform.isIOS
                       ? CupertinoButton(
-                        child: Text('Enviar'),
                         onPressed:
                             _estaEscribiendo
                                 ? () =>
                                     _handleSubmit(_textController.text.trim())
                                 : null,
+                        child: Text('Enviar'),
                       )
                       : Container(
                         padding: EdgeInsets.symmetric(horizontal: 4.0),
