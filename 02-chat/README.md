@@ -83,3 +83,94 @@ Vamos a crear la pantalla de chat en `chat_page.dart`.
 Nos creamos en la carpeta `widgets` un widget llamado `chat_message.dart` que nos va a permitir mostrar los mensajes de forma más bonita.
 
 Seguimos también modificando `chat_page.dart` para que use este widget.
+
+## Backend y Frontend - Autenticación
+
+Levantar el backend `02-chat_server` accediendo a su carpeta con el comando `npm run start:dev` y este frontend de Flutter.
+
+Vamos a ocupar bastantes servicios en nuestra app. Necesitamos hacer peticiones HTTP, un servicio para manejar los sockets...
+
+Como manejador de estado de esta app vamos a usar `provider`. Ver documentación en `https://pub.dev/packages/provider`. Lo instalamos usando `pubscpec assist`.
+
+En la carpeta `lib` creamos la carpeta `services` y dentro el archivo `auth_service.dart` que va a ser una clase.
+
+## Petición HTTP.POST al login
+
+Desde `auth_service.dart`, vamos a llamar al endpoint de login del backend.
+
+Vamos a usar el paquete `http` para hacer las peticiones. Lo instalamos con `pubspec assist`. La documentación está en: `https://pub.dev/packages/http`.
+
+En `main.dart`, vamos a envolver nuestra app con el `MultiProvider` de `provider` para que podamos usar el `AuthService` en toda la app.
+
+Vamos a tener que crearnos unas variables de entorno porque el localhost en Android no funciona, y tampoco funcionará cuando se ponga en producción. En iOs si se puede usar localhost, pero es mejor usar una IP fija.
+
+Para ello, dentro de `lib` creamos la carpeta `global` y dentro el archivo `environment.dart`.
+
+Por último, para probar que esto funciona, desde nuestra pantalla de login `login_page.dart`, vamos a llamar al método `login` del `AuthService` al pulsar el botón de login.
+
+## Mapear respuesta de un login
+
+Vamos a mapear la respuesta del login a un tipo de modelo propio de nuestra aplicación.
+
+Si no lo hacemos, tenemos que trabajar con mapas de Dart, que es un poco incómodo. Son de este tipo: `resp.body['usuario']`.
+
+Para hacerlo, usaremos la web `https://quicktype.io/` que nos permite generar el modelo a partir de un JSON.
+
+Partimos de la respuesta de un login exitoso, que podemos ver en Postman y generamos las clases seleccionando Dart.
+
+Copias el código generado y lo pegamos en un archivo llamado `login_response.dart` dentro de la carpeta `models`.
+
+También en `models` modificamos el archivo `usuario.dart` para que usemos el modelo generado en `quicktype`.
+
+Seguimos modificando `auth_service.dart` para que use el modelo de respuesta del login y también tratar las excepciones que puedan ocurrir.
+
+## Bloquear botón mientras se realiza la autenticación
+
+Cuando se haga la autenticación, vamos a hacer que desaparezca el teclado y bloquear el botón de Ingrese para evitar un doble posteo.
+
+Modificamos `auth_service.dart` para saber cuando nos estamos autenticando y así poder bloquear el botón.
+
+También modificamos `login_page.dart` para que el botón de login se bloquee mientras se está autenticando.
+
+## Mostrar alertas si las credenciales son incorrectas
+
+`auth_service.dart` actualmente regresa un Future<void>. Lo cambiamos para que regrese un Future<bool>, que será true si el login fue exitoso y false si no lo fue, y en ese caso mostramos una alerta.
+
+Modificamos `login_page.dart`.
+
+En la carpeta `lib` creamos un nuevo directorio llamado `helpers` y dentro el archivo `mostrar_alerta.dart` que contendrá una función para mostrar alertas.
+
+## Guardar JWT en el Storage (Keychain IOS y Keystore Android)
+
+Cuando el login es exitoso, vamos a guardar el JWT en el almacenamiento local del dispositivo. Para ello, usaremos el paquete `flutter_secure_storage`.
+
+Lo instalamos con `pubspec assist`. Documentación: `https://pub.dev/packages/flutter_secure_storage`.
+
+Modificamos `auth_service.dart` para guardar el token en el almacenamiento seguro del dispositivo.
+
+Modificamos `login_page.dart` para navegar a otra pantalla si el login es exitoso.
+
+## Pantalla de registro
+
+Modificamos `auth_service.dart` para crear un método `register` que haga una petición HTTP.POST al endpoint de registro del backend.
+
+Modificamos `register_page.dart` para que use este método y registre un nuevo usuario si el registro es exitoso. En caso contrario, mostramos una alerta con el error.
+
+## Mantener la pantalla de usuarios si tenemos un token válido
+
+Cuando ingresamos con unas credenciales válidas, se genera un token que se guarda. El problema es que si ahora pulsamos un hot restart, el token lo seguimos teniendo, pero vuelve a aparecer la pantalla de login.
+
+La idea es mantener la pantalla de usuarios si tenemos un token válido.
+
+Vamos a crear un método en `auth_service.dart` que verifique si el token que tenemos almacenado es válido y, si lo es, navegue directamente a la pantalla de usuarios.
+
+Modificamos `loading_page.dart` para que al iniciar la app verifique si el usuario ya está autenticado y, en caso afirmativo, navegue directamente a la pantalla de usuarios.
+
+## Logout de nuestra aplicación
+
+Desde la pantalla `usuarios_page.dart`, vamos a implementar un botón de logout que nos permita cerrar sesión.
+
+## Testing
+
+- Login: Indicar el correo `test1@test.com` y la contraseña `123456` (esto tiene que estar creado en el backend).
+- Registro: Indicar un correo `test1@test.com` no existente en BD (cambiar el 1 por otro) y la contraseña `123456`. Indicar un nombre cualquiera.

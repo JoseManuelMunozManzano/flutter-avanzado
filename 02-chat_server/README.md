@@ -121,6 +121,10 @@ Abrir un navegador y acceder a la ruta: `http:localhost:3000`. Hay que refrescar
 
 Abrir otro navegador y acceder a la misma ruta. Recargar solo en uno de los navegadores para ver como se realiza la emisión-escucha de los mensajes.
 
+## Backend y Frontend - Autenticación
+
+Levantar este backend con `npm run start:dev` y el frontend de Flutter `02-chat`.
+
 ## Testing
 
 Se ha probado con Postman.

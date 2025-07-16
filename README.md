@@ -46,7 +46,7 @@ Ejemplo de creación de tag: `git tag -a v1.0.0 -m "Socket Server Básico"`.
 
 Ejemplo de puhs del tag: `git push --tags`.
 
-## BandNames Flutter + Socket Backend
+### BandNames Flutter + Socket Backend
 
 Vamos a conectar nuestra aplicación de Flutter con nuestro backend, y ambos van a trabajar como si fueran uno solo.
 
@@ -63,7 +63,7 @@ En esta sección tocaremos los siguientes temas:
 - CRUD basado en Sockets
 - Gráficas en tiempo real
 
-## Desplegar Socket Server en mi Raspberry Pi
+### Desplegar Socket Server en mi Raspberry Pi
 
 Aquí hay una cosa muy importante que decir, cuando subamos la app Flutter a las Apps Stores, si se usa un server, este tiene que tener un certificado HTTPS.
 
@@ -109,6 +109,8 @@ La idea es hacer un diseño similar a iMessage o el Messenger de Facebook, para 
 
 ## 02-chat_server
 
+### Chat App - Backend
+
 En esta sección nos centramos en el backend, en el manejo de las sesiones de los usuarios, en JWT y gestión de contraseñas, en generar y guardar usuarios, validaciones para no tener dos usuarios duplicados...
 
 Usaremos MongoDB para guardar los mensajes y los usuarios.
@@ -137,3 +139,19 @@ Aquí tocaremos temas sobre:
 - Validar JWTs
 
 Es una sección orientada al login y registro principalmente, luego trabajaremos con los mensajes y su almacenamiento.
+
+### ChatApp - Autenticando contra nuestro backend
+
+Vamos a conectar el trabajo realizado en la parte de Flutter `02-chat` con el backend `02-chat_server`, por ahora la parte de login y registro.
+
+Para trabajar con la autenticación de sockets, necesitamos una autenticación activa. El servidor tiene que saber la sesión del usuario para poderlo dejar trabajar. El problema es, ¿cómo podemos mantener esa autenticación en el lado de la parte de los sockets? El JWT es una cosa y la comunicación con sockets es otra.
+
+#### Temas puntuales de la sección
+
+- Consumo de servicios Rest
+- Login y registro desde Flutter
+- Almacenar JWT Keychain / KeyStore
+- Preloader Screen
+- Mantener la pantalla del usuario si está autenticado
+- Logout
+
