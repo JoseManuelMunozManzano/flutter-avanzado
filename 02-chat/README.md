@@ -170,6 +170,102 @@ Modificamos `loading_page.dart` para que al iniciar la app verifique si el usuar
 
 Desde la pantalla `usuarios_page.dart`, vamos a implementar un botón de logout que nos permita cerrar sesión.
 
+## Socket.io en nuestra aplicación de chat
+
+Empezamos a hacer la comunicación en tiempo real con Socket.io.
+
+En la carpeta `lib/services` creamos el archivo `socket_service.dart` que contendrá la lógica para conectarnos al servidor de sockets.
+
+Instalamos el paquete `socket_io_client`. Documentación: `https://pub.dev/packages/socket_io_client`.
+
+En `main.dart` añadimos otro `ChangeNotifierProvider` para crear una instancia global de `SocketService` en el context, para que esté disponible en toda la aplicación.
+
+## Conectar al Socket Server después de un inicio de sesión
+
+En el login no debe haber ninguna comunicación con el backend porque no sabemos ni quien es el usuario.
+
+Modificamos `socket_service.dart` para que se conecte al servidor de sockets después de un inicio de sesión exitoso.
+
+Modificamos `login_page.dart` para que, al iniciar sesión, se conecte al socket.
+
+Modificamos `usuarios_page.dart` para que se desconecte del socket al hacer logout.
+
+Modificamos `register_page.dart` para que, al dar de alta un usuario, se conecte al socket.
+
+Modificamos `loading_page.dart` para que se conecte al socket si el usuario ya estaba autenticado.
+
+## Cambiar icono cuando hay conexión con el Socket Server
+
+Modificamos `usuarios_page.dart` para que muestre un icono de conexión/desconexión al socket distinto en la parte superior derecha de la pantalla.
+
+Probar cancelando la ejecución de la parte backend y luego volver a ejecutar el backend para ver cómo cambia el icono.
+
+## Autenticando el cliente conectado por sockets
+
+En `auth_service.dart`, tenemos la función estática `getToken()` que nos devuelve el token almacenado. Ese es el token que tenemos que enviar cuando nos conectamos al socket.
+
+Modificamos `socket_service.dart`, el método `connect()` para que envíe el token al servidor de sockets. Para ello, usamos el parámetro `extraHeaders` de la conexión.
+
+## Servicio REST para retornar los usuarios conectados
+
+Queremos cargar en el front los usuarios conectados cuando se haga un pull-to-refresh. Para ello, vamos a crear un endpoint en el backend que nos retorne los usuarios conectados.
+
+## Mostrar lista de usuarios en nuestra app
+
+Siempre que tengamos que hacer una petición HTTP hacia un servicio, lo mejor es mapear la respuesta a un modelo de nuestra aplicación, para tener objetos propios de Flutter.
+
+Utilizamos `quicktype.io` para generar el modelo de respuesta de los usuarios conectados y, en la carpeta `models`, creamos el archivo `usuarios_response.dart`. Indicamos en el nombre `_response` para que se entienda que es una respuesta de un servicio.
+
+Necesitamos hacer la petición HTTP al endpoint que nos retorna los usuarios conectados. En la carpeta `services`, creamos el archivo `usuarios_service.dart` donde centralizaremos todas las peticiones HTTP.
+
+En ese fichero vemos otra forma de recuperar la información sin pasar por un `ChangeNotifier`.
+
+Modificamos `usuarios_page.dart` para que, al hacer pull-to-refresh, se llame al servicio de usuarios y se actualice la lista de usuarios.
+
+## Usuario seleccionado para el chat
+
+Vamos a tocar alguno de los usuarios de la lista que aparece en la pantalla (independientemente de que esté conectado o no) y vamos a navegar a la pantalla de chat, que no recibe ningún argumento. Básicamente, queremos saber a qué usuario le estamos enviando mensajes.
+
+Para pasar información cuando una pantalla no recibe argumentos, vamos a crear en `services` un servicio `chat_service.dart` que cargará los mensajes del chat y sabremos el usuario al que le estamos enviando mensajes (su uid).
+
+En `main.dart` añadimos otro `ChangeNotifierProvider` para crear una instancia global de `ChatService` en el context, para que esté disponible en toda la aplicación.
+
+Se en qué elemento estoy haciendo click en `usuarios_page.dart`. Lo modifico para poder obtener la información del usuario que luego aparecerá en la pantalla de chat.
+
+Modificamos `chat_page.dart` para que muestre el nombre del usuario al que le estamos enviando mensajes.
+
+## Emitir un mensaje del chat al servidor
+
+Vamos a emitir mensajes al sevidor de sockets.
+
+Ese emit tiene que tener cierta estructura para que el servidor sepa hacia quién va ese mensaje.
+
+Para ello, modificamos `chat_page.dart`.
+
+## Escuchar mensajes del servidor en Flutter
+
+Abriremos la app en un emulador Android y en un móvil físico Android u otro emulador.
+
+Podemos utilizar la terminal, ejecutando `flutter run`y seleccionar el dispositivo físico. Cuando queramos hacer un full restart, pulsamos `Shift + R` en la terminal.
+
+Nos conectamos en el emulador con test1@test.com y en el físico con test2@test.com, y en el emulador querremos hablar con el usuario del mail test2@test.com y al revés.
+
+Modificamos `chat_page.dart` para que escuche los mensajes del servidor y los muestre en la pantalla de chat.
+
+Cuando el segundo usuario sale de la pantalla de chat, ya no nos interesan los mensajes que le envíe el primer usuario. Para ello, en el método `dispose()` de `chat_page.dart`, vamos a desuscribirnos del socket.
+
+## Cargar historial de chat en Flutter
+
+Utilizando el servicio REST de nuestro backend, vamos a cargar el historial de mensajes entre dos usuarios.
+
+Modificamos `chat_service.dart` para que tenga un método `getChat` que haga una petición HTTP al endpoint del backend que retorna el historial de mensajes entre dos usuarios.
+
+Vamos a mapear la respuesta del historial de mensajes a un modelo propio de Flutter. Utilizamos `quicktype.io` para generar el modelo a partir de un JSON y creamos el archivo `mensajes_response.dart` en la carpeta `models`.
+
+Modificamos `chat_page.dart` para que, al iniciar la pantalla, se cargue el historial de mensajes entre los dos usuarios.
+
+Modificamos `chat_message.dart` para que muestre los mensajes del historial de forma adecuada.
+
 ## Testing
 
 - Login: Indicar el correo `test1@test.com` y la contraseña `123456` (esto tiene que estar creado en el backend).

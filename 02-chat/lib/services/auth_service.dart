@@ -29,14 +29,14 @@ class AuthService with ChangeNotifier {
 
   // Métodos estáticos para obtener el token y eliminarlo.
   static Future<String?> getToken() async {
-    final _storage = FlutterSecureStorage();
-    final token = await _storage.read(key: 'token');
+    final storage = FlutterSecureStorage();
+    final token = await storage.read(key: 'token');
     return token;
   }
 
   static Future<void> deleteToken() async {
-    final _storage = FlutterSecureStorage();
-    await _storage.delete(key: 'token');
+    final storage = FlutterSecureStorage();
+    await storage.delete(key: 'token');
   }
 
   // Regresa un Future<bool> que indica si el login fue exitoso o no.
@@ -100,7 +100,7 @@ class AuthService with ChangeNotifier {
   }
 
   Future<bool> isLoggedIn() async {
-    final token = await this._storage.read(key: 'token');
+    final token = await _storage.read(key: 'token');
     final url = Uri.http(Environment.apiUrl, 'api/login/renew');
     final resp = await http.get(
       url,

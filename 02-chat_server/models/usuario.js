@@ -33,4 +33,5 @@ UsuarioSchema.method('toJSON', function () {
   return object;
 });
 
+// Mongoose por defecto añade el plural.
 module.exports = model('Usuario', UsuarioSchema);

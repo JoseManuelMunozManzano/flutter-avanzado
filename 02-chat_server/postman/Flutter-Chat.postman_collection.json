@@ -16,7 +16,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"nombre\": \"José Manuel\",\n    \"email\": \"test1@test.com\",\n    \"password\": \"123456\"\n}",
+					"raw": "{\n    \"nombre\": \"José Manuel\",\n    \"email\": \"test4@test.com\",\n    \"password\": \"123456\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -106,6 +106,94 @@
 						"api",
 						"login",
 						"renew"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Usuario: Obtener Usuarios",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "x-token",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2ODczM2Q4MWQ3MzY1YTU2MzJmZWU0NzAiLCJpYXQiOjE3NTMwMjUwMjEsImV4cCI6MTc1MzExMTQyMX0.nCNwvdyV3TXbse6fayoStbz-X6s68KvS7xr1aCkzAZs",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3000/api/usuarios/?desde=0",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"usuarios",
+						""
+					],
+					"query": [
+						{
+							"key": "desde",
+							"value": "0"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Mensaje: Obtener Mensajes",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "x-token",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2ODczM2Q4MWQ3MzY1YTU2MzJmZWU0NzAiLCJpYXQiOjE3NTMzNzQ2MzMsImV4cCI6MTc1MzQ2MTAzM30.AHfRtTxl5aA5uZHK4iHxvIcuVmEA4EbnmYeujHgwEKI",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3000/api/mensajes/68733da4d7365a5632fee473",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"mensajes",
+						"68733da4d7365a5632fee473"
 					]
 				}
 			},

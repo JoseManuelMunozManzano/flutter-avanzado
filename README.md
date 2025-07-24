@@ -155,3 +155,23 @@ Para trabajar con la autenticación de sockets, necesitamos una autenticación a
 - Mantener la pantalla del usuario si está autenticado
 - Logout
 
+### Socket.io en nuestra aplicación de chat
+
+Vamos a ir trabajando a la vez la integración de socket.io tanto en la parte de Flutter como en la parte del backend. Va a ser más fácil comprender como funciona.
+
+#### Temas puntuales de la sección
+
+Aquí tocaremos temas sobre:
+
+- Backend y Frontend relacionado a los mensajes
+- Conectar al socket server tras login
+- Autenticar cliente de sockets
+- Consumir servicios Rest
+- Listar los usuarios
+- Seleccionar un chat
+- Enviar y recibir nuevos mensajes
+- Almacenar mensajes en Mongo
+- Recuperar los últimos mensajes y paginación
+- Enviar mensajes privados
+
+Aquí ya haremos todo lo relacionado al envío de mensajes, almacenarlos y consumirlos aunque el cliente esté o no conectado.

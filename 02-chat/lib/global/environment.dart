@@ -12,6 +12,6 @@ class Environment {
   // Esto para los servicios de sockets.
   static String socketUrl =
       Platform.isAndroid
-          ? '192.168.50.124:3000'
-          : 'localhost:3000';
+          ? 'http://192.168.50.124:3000'
+          : 'http://localhost:3000';
 }

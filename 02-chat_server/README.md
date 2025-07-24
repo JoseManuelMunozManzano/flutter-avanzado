@@ -125,11 +125,86 @@ Abrir otro navegador y acceder a la misma ruta. Recargar solo en uno de los nave
 
 Levantar este backend con `npm run start:dev` y el frontend de Flutter `02-chat`.
 
+## Socket.io en nuestra aplicación de chat
+
+Empezamos a hacer la comunicación en tiempo real con Socket.io.
+
+## Autenticando el cliente conectado por sockets
+
+Tenemos que utilizar el JWT para autenticar al cliente que se conecta por sockets. El servidor debe verificar que el JWT es válido antes de permitir la conexión del socket. Si el token no es válido, se debe desconectar el socket.
+
+Modificamos `sockets/socket.js` para autenticar el socket con el JWT. El JWT lo obtenemos del cliente a través de los headers de la conexión del socket. Y en este programa usamos `socket.handshake.headers['x-token']` para obtener el token.
+
+En `helpers/jwt.js` creamos una función `comprobarJWT` que se encargará de verificar el JWT. Esta función se usará en el socket para autenticar al cliente.
+
+Como prueba, desde el cliente Flutter, deberemos conectarnos al socket, ya que se envía el JWT. Pero si accedemos usando el navegador a `http://localhost:3000` (ver consola), no se enviará el JWT y el socket no se conectará.
+
+## Actualizar base de datos cuando un usuario se conecta
+
+Tenemos un usuario conectado correctamente, pero en la BD MongoDB no tenemos información de que este usuario está conectado (es nuestro campo online). Vamos a actualizar la BD para reflejar esto, tanto al conectarse como al desconectarse.
+
+No queremos cargar mucho el archivo `sockets/socket.js`, así que creamos un nuevo archivo en la carpeta `controllers` llamado `socket.js` donde implementaremos los métodos de interacción con los sockets.
+
+Modificamos `sockets/socket.js` para usar los métodos de `controllers/socket.js` al conectarse y desconectarse.
+
+## Servicio REST para retornar los usuarios conectados
+
+Queremos cargar en el front los usuarios conectados cuando se haga un pull-to-refresh. Para ello, en la carpeta `routes` creamos un nuevo archivo `usuarios.js` donde definiremos un endpoint REST que retorne los usuarios conectados.
+
+En la carpeta `controllers` creamos un nuevo archivo `usuarios.js` donde implementaremos la lógica para obtener los usuarios conectados.
+
+## Teoría sobre el envío de mensajes privados por socket
+
+Imaginemos tres dispositivos conectados al socket server.
+
+- client.emit: Si el primer dispositivo emite el mensaje, si nuestro servidor llama a client.emit, se lo emite a la persona que emitió el primer mensaje.
+- io.emit: io hace referencia a todos los clientes conectados, por lo que si el primer dispositivo emite un mensaje, se lo envía a todos los dispositivos conectados.
+- Salas o canales: Si queremos que el primer dispositivo y el tercero hablen entre sí, siendo el primer dispositivo el que emite el mensaje, este se comunica con el servidor indicando el destinatario. Es el servidor el que reenvía el mensaje al dispositivo tres.
+  - Cuando un dispositivo se conecta a un socket server, se conecta automáticamente a dos canales, el `canal global`, que permite a io.emit hacer un broadcast de un mensaje a todos los clientes conectados, y el `canal que tiene el nombre del mismo id del socket`. El canal global es el que se usa para emitir mensajes a todos los dispositivos conectados, mientras que el otro canal es que se usa para enviar mensajes privados a un dispositivo específico. El id es muy volátil, es el `client.id` y cada vez que nos reconectamos cambia, por lo que tendríamos que estar actualizando el id muchas veces. Esto no lo vamos a hacer así. Los sockets están identificados por el uid de cada una de las personas, o su correo electrónico, y esto está en Mongo y son únicos.
+
+Por tanto, vamos a hacer lo siguiente. Usando `client.join('UID de mongo / correo electrónico')` vamos a unir al cliente a una sala que va a tener el UID (o correo electrónico) de Mongo que es único. Es mejor el UID, y es lo que vamos a usar.
+
+## Emitir un mensaje del chat al servidor
+
+Modificamos `sockets/socket.js` para que cuando un cliente emita un mensaje, este se envíe a la sala correspondiente al UID del destinatario.
+
+## Escuchar mensajes del servidor en Flutter
+
+Modificamos `socket_service.dart` para reenviar el mensaje a un canal usando `io.to`
+
+## Backend - Modelo de mensajes
+
+La información que se escribe la vamos a persistir como histórico.
+
+Vamos a crear un modelo para guardarlo en mongoose. En `models` creamos un archivo `mensaje.js`.
+
+## Guardar mensaje en base de datos
+
+Vamos a utilizar nuestro modelo para grabar el mensaje en la base de datos.
+
+Modificamos `controllers/socket.js` para crear una nueva función `grabarMensaje` que se encargará de guardar el mensaje en la base de datos.
+
+Modificamos `sockets/socket.js` para usar la función `grabarMensaje` al recibir un mensaje del cliente.
+
+## Backend - Servicio para obtener los mensajes de chat
+
+Vamos a crear un servicio REST para obtener los mensajes de chat. Esto nos permitirá cargar el histórico de mensajes en el cliente.
+
+Modificamos `index.js` para crear una nueva ruta `/api/mensajes` que apunte a una nueva ruta `routes/mensajes`.
+
+Creamos un nuevo archivo en `routes/mensajes.js` donde definiremos el endpoint REST para obtener los mensajes.
+
+Creamos un nuevo archivo en `controllers/mensajes.js` donde implementaremos la lógica para obtener los mensajes de la base de datos.
+
 ## Testing
 
 Se ha probado con Postman.
 
 En la carpeta `postman` en la raiz del proyecto, hay un archivo `Flutter-Chat.postman_collection.json` que contiene las peticiones que se pueden hacer al servidor.
+
+Modificamos `index.js` para usar las rutas de `usuarios.js`.
+
+Para probar, primero tenemos que obtener un token válido. Para ello, hacemos un POST a `/api/login` con un usuario existente. Luego, usamos ese token en las peticiones a `/api/usuarios` para obtener los usuarios conectados.
 
 ## Desplegar en Raspberry Pi
 
