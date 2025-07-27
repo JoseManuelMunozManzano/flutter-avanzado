@@ -175,3 +175,26 @@ Aquí tocaremos temas sobre:
 - Enviar mensajes privados
 
 Aquí ya haremos todo lo relacionado al envío de mensajes, almacenarlos y consumirlos aunque el cliente esté o no conectado.
+
+## 03-estados
+
+### Manejadores de estado - Singleton
+
+Una de las cosas más importantes de una app es saber el estado de la misma, como cambia la información y como actualizar los widgets en tiempo real en la UI cuando algo sucede.
+
+Empezamos con el Singleton. Vamos a crear una interfaz de usuario sencilla. No vamos a utilizar ningún paquete de terceros, solo lo que viene por defecto en Flutter.
+
+Singleton puede ser una buena opción cuando queremos hacer una petición HTTP, traer la información y mostrarla, sin querer mantener el estado y para descentralizar la lógica de negocio de la app con el UI.
+
+#### Temas puntuales de la sección
+
+Aquí tocaremos temas sobre:
+
+- Diseño de una app para pruebas
+- Teoría de un singleton
+- Streams
+- Cambios de estado
+- Varios listeners
+- Git y Ramas
+
+Es una sección pequeña, pero quiero poco a poco preparando el terreno para trabajar con gestores de estado más complejos.
