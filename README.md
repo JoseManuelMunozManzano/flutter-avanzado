@@ -178,9 +178,9 @@ Aquí ya haremos todo lo relacionado al envío de mensajes, almacenarlos y consu
 
 ## 03-estados
 
-### Manejadores de estado - Singleton
-
 Una de las cosas más importantes de una app es saber el estado de la misma, como cambia la información y como actualizar los widgets en tiempo real en la UI cuando algo sucede.
+
+### Manejadores de estado - Singleton
 
 Empezamos con el Singleton. Vamos a crear una interfaz de usuario sencilla. No vamos a utilizar ningún paquete de terceros, solo lo que viene por defecto en Flutter.
 
@@ -198,3 +198,19 @@ Aquí tocaremos temas sobre:
 - Git y Ramas
 
 Es una sección pequeña, pero quiero poco a poco preparando el terreno para trabajar con gestores de estado más complejos.
+
+### Manejadores de estado - Provider
+
+Provider nos ayuda a mantener un Singleton de la clase que queramos implementar, pero a la vez, dependiendo del nivel donde pongamos el MultiProvider, podemos tener diferentes instancias de la misma clase en diferentes niveles de la aplicación.
+
+#### Temas puntuales de la sección
+
+Aquí tocaremos temas sobre:
+
+- Provider
+- Resolver problemas del Singleton
+- MultiProvider
+- Redibujar widgets bajo demanda
+- Ramas de Github
+
+Esta sección no es muy compleja, pero nos ayudará a comprender el manejo de los Cubits y Flutter BLoC que veremos un poco más adelante.

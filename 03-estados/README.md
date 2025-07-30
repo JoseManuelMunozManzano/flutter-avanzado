@@ -29,3 +29,11 @@ Trabajaremos en distintas ramas, manteniendo el diseño de las pantallas y el mo
 ### Singleton
 
 Singleton puede ser una buena opción cuando queremos hacer una petición HTTP, traer la información y mostrarla, sin querer mantener el estado y para descentralizar la lógica de negocio de la app con el UI.
+
+Lo tenemos en su propia rama `singleton`.
+
+### Provider
+
+Provider nos ayuda a mantener un Singleton de la clase que queramos implementar, pero a la vez, dependiendo del nivel donde pongamos el MultiProvider, podemos tener diferentes instancias de la misma clase en diferentes niveles de la aplicación.
+
+Lo tenemos en su propia rama `provider`.
