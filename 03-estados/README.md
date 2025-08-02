@@ -37,3 +37,51 @@ Lo tenemos en su propia rama `singleton`.
 Provider nos ayuda a mantener un Singleton de la clase que queramos implementar, pero a la vez, dependiendo del nivel donde pongamos el MultiProvider, podemos tener diferentes instancias de la misma clase en diferentes niveles de la aplicación.
 
 Lo tenemos en su propia rama `provider`.
+
+#### Continuación de proyecto
+
+Instalamos provider usando el plugin de Flutter en VSCode `Pubspec Assist`.
+
+#### Configuración inicial
+
+Vamos a utilizar Provider como manejador de estado.
+
+Necesitamos una o varias clases que se encarguen de tener la información centralizada.
+
+Provider, al igual que Singleton, nos ayuda a tener una única instancia de una clase inicializada y creada dentro del contexto.
+
+Podemos tener varios providers, pero usualmente se coloca uno a un nivel superior para así poder compartir información en todos los widgets hijos.
+
+Dentro de `lib` creamos una carpeta `services` y dentro de ella el archivo `usuario_service.dart`.
+
+Modificamos `main.dart` porque la idea de Provider es que coloquemos nuestra instancia en un nivel tan alto que le permita a todos sus descendientes acceder a ella.
+
+Modificamos `pagina1_page.dart` para usar `usuarioService`.
+
+#### Establecer información del usuario
+
+Vamos a utilizar Provider para pulsar el botón `Establecer Usuario` de la segunda pantalla.
+
+Modificamos `usuario_service.dart` para cargar el usuario por medio de un setter.
+
+Modificamos `pagina2_page.dart` para cargar el usuario cuando se pulse el botón `Establecer Usuario`.
+
+#### Cambiar edad mediante un método
+
+Vamos a cambiar la edad al pulsar el botón `Cambiar Edad` de la segunda pantalla.
+
+Modificamos `usuario_service.dart` para modfificar la edad del usuario y vaciar el contenido del usuario.
+
+En la primera pantalla, `pagina1_page.dart`, vamos a hacer un botón para vaciar la información del usuario activo.
+
+Modificamos `pagina2_page.dart` para modificar la edad del usuario cuando se pulse el botón `Establecer Usuario`. También mostramos el nombre del usuario activo.
+
+#### Manejo de las profesiones
+
+Vamos a hacer funcionar el botón `Añadir Profesión` de la segunda pantalla.
+
+Modificamos `pagina1_page.dart` para mostrar las profesiones.
+
+Modificamos `usuario_service.dart`para crear profesiones.
+
+Modificamos `pagina2_page.dart` para llamar al nuevo método de `usuario_service.dart`.
