@@ -37,3 +37,11 @@ Lo tenemos en su propia rama `singleton`.
 Provider nos ayuda a mantener un Singleton de la clase que queramos implementar, pero a la vez, dependiendo del nivel donde pongamos el MultiProvider, podemos tener diferentes instancias de la misma clase en diferentes niveles de la aplicación.
 
 Lo tenemos en su propia rama `provider`.
+
+### Cubit
+
+Un Cubit es una clase que podemos consumir de la misma forma que se consume un BLoC.
+
+Al igual que Provider, lo podemos colocar en cualquier árbol de Widgets y todo sus hijos podrán acceder a esa instancia del Cubit.
+
+Lo tenemos en su propia rama `cubit`.

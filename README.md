@@ -214,3 +214,25 @@ Aquí tocaremos temas sobre:
 - Ramas de Github
 
 Esta sección no es muy compleja, pero nos ayudará a comprender el manejo de los Cubits y Flutter BLoC que veremos un poco más adelante.
+
+### Manejadores de estado - Cubit
+
+Un Cubit es un pelín menos robusto que un BLoC (lo veremos más adelante) y tiene los beneficios de Provider.
+
+Un Cubit es una clase que podemos consumir de la misma forma que se consume un BLoC.
+
+Al igual que Provider, lo podemos colocar en cualquier árbol de Widgets y todo sus hijos podrán acceder a esa instancia del Cubit.
+
+El principal problema de los Cubit es que, si los comprendemos bien, ya comprendemos BLoC, por lo que queda a discreción nuestra cuál usar.
+
+#### Temas puntuales de la sección
+
+Aquí tocaremos temas sobre:
+
+- Cubit como gestor de estado
+- Emitir cambios
+- Redibujar cuando hay cambios de estado
+- BlocMultiProvider
+- Consumir el Cubit en cualquier lugar
+
+Los Cubits son muy interesantes ya que es por decirlo así, un BLoC simple pero robusto y potente.
