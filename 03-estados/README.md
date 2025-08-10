@@ -45,3 +45,15 @@ Un Cubit es una clase que podemos consumir de la misma forma que se consume un B
 Al igual que Provider, lo podemos colocar en cualquier árbol de Widgets y todo sus hijos podrán acceder a esa instancia del Cubit.
 
 Lo tenemos en su propia rama `cubit`.
+
+### BLoC
+
+Si se ha aprendido Cubit, más o menos ya hemos aprendido BLoC.
+
+Usualmente, el BLoC tiene 3 archivos:
+
+- El BLoC como tal en el que hay métodos y propiedades globales.
+- El estado como se encuentra BLoC en ese momento.
+- Eventos. Modificaremos el estado únicamente disparando eventos.
+
+Lo tenemos en su propia rama `bloc`.

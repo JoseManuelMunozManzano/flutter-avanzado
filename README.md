@@ -236,3 +236,29 @@ Aquí tocaremos temas sobre:
 - Consumir el Cubit en cualquier lugar
 
 Los Cubits son muy interesantes ya que es por decirlo así, un BLoC simple pero robusto y potente.
+
+### Manejadores de estado - BLoC
+
+Si se ha aprendido Cubit, más o menos ya hemos aprendido BLoC.
+
+Usualmente, el BLoC tiene 3 archivos:
+
+- El BLoC como tal en el que hay métodos y propiedades globales.
+- El estado como se encuentra BLoC en ese momento.
+- Eventos. Modificaremos el estado únicamente disparando eventos.
+
+#### Temas puntuales de la sección
+
+Aquí tocaremos temas sobre:
+
+- Flutter Bloc
+- BLoC
+- Eventos
+- Estados
+- BlocMultiProvider
+- Obtener información del estado
+- Emitir eventos
+
+El BLoC es considerado por muchos el gestor de estado más robusto pero a la vez se puede ver muy complejo, mi objetivo es que tras haber hecho las anteriores secciones, podamos comprender mejor el Bloc para ver su potencial.
+
+Es importante comprenderlo, porque de aquí en adelante, todo lo haré con Flutter Bloc.
