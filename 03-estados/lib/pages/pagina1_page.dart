@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+
+import 'package:estados/bloc/user/user_bloc.dart';
+import 'package:estados/models/usuario.dart';
 
 class Pagina1Page extends StatelessWidget {
   const Pagina1Page({super.key});
@@ -6,8 +10,31 @@ class Pagina1Page extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Pagina 1')),
-      body: InformacionUsuario(),
+      appBar: AppBar(
+        title: const Text('Pagina 1'),
+        actions: [
+          IconButton(
+            onPressed: () {
+              BlocProvider.of<UserBloc>(
+                context,
+                listen: false,
+              ).add(DeleteUser());
+            },
+            icon: const Icon(Icons.delete_outline),
+          ),
+        ],
+      ),
+      // Cada vez que cambie el estado se va a volver a construir.
+      body: BlocBuilder<UserBloc, UserState>(
+        // Usar buildWhen cuando queramos redibujar solo cuando el estado actual tenga el valor, información o variable
+        // que queramos. Ayuda a evitar renderizados innecesarios.
+        // buildWhen: (previous, current) {},
+        builder: (context, state) {
+          return state.existUser
+              ? InformacionUsuario(user: state.user!)
+              : const Center(child: Text('No hay usuario seleccionado'));
+        },
+      ),
       floatingActionButton: FloatingActionButton(
         onPressed: () => Navigator.pushNamed(context, 'pagina2'),
         child: Icon(Icons.accessibility_new),
@@ -17,7 +44,9 @@ class Pagina1Page extends StatelessWidget {
 }
 
 class InformacionUsuario extends StatelessWidget {
-  const InformacionUsuario({super.key});
+  final Usuario user;
+
+  const InformacionUsuario({super.key, required this.user});
 
   @override
   Widget build(BuildContext context) {
@@ -28,24 +57,22 @@ class InformacionUsuario extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(
+          const Text(
             'General',
             style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
           ),
-          Divider(),
+          const Divider(),
 
-          ListTile(title: Text('Nombre: ')),
-          ListTile(title: Text('Edad: ')),
+          ListTile(title: Text('Nombre: ${user.nombre}')),
+          ListTile(title: Text('Edad: ${user.edad}')),
 
-          Text(
+          const Text(
             'Profesiones',
             style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
           ),
-          Divider(),
+          const Divider(),
 
-          ListTile(title: Text('Profesión 1')),
-          ListTile(title: Text('Profesión 1')),
-          ListTile(title: Text('Profesión 1')),
+          ...user.profesiones.map((prof) => ListTile(title: Text(prof))),
         ],
       ),
     );
