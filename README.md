@@ -262,3 +262,5 @@ Aquí tocaremos temas sobre:
 El BLoC es considerado por muchos el gestor de estado más robusto pero a la vez se puede ver muy complejo, mi objetivo es que tras haber hecho las anteriores secciones, podamos comprender mejor el Bloc para ver su potencial.
 
 Es importante comprenderlo, porque de aquí en adelante, todo lo haré con Flutter Bloc.
+
+### Manejadores de estado - GetX

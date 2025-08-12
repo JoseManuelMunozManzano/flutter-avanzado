@@ -57,3 +57,7 @@ Usualmente, el BLoC tiene 3 archivos:
 - Eventos. Modificaremos el estado únicamente disparando eventos.
 
 Lo tenemos en su propia rama `bloc`.
+
+### GetX
+
+Lo tenemos en su propia rama `getx`.
