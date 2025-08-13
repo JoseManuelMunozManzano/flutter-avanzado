@@ -264,3 +264,9 @@ El BLoC es considerado por muchos el gestor de estado más robusto pero a la vez
 Es importante comprenderlo, porque de aquí en adelante, todo lo haré con Flutter Bloc.
 
 ### Manejadores de estado - GetX
+
+GetX es más que un gestor de estados, sería más bien un mini framework.
+
+## 04-calculadora_getx
+
+Se hace una calculadora usando GetX, partiendo de un diseño ya hecho, es decir, lo más importante es la gestión del estado.

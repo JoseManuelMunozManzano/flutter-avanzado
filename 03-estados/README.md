@@ -60,4 +60,6 @@ Lo tenemos en su propia rama `bloc`.
 
 ### GetX
 
-Lo tenemos en su propia rama `getx`.
+GetX es más que un gestor de estados, sería más bien un mini framework que sirve también para cambiar de tema, inyectar dependencias...
+
+Lo tenemos en su propia rama getx.
